@@ -1,11 +1,15 @@
-<!DOCTYPE html5>
-<html lang="es">
+<!DOCTYPE html
+>
+
 <head>
 
-    body {
-        background-color: white;
-        color: black;
-      }
+    <style>
+        body {
+          background-color: rgb(15, 17, 12);
+          color: rgb(248, 248, 248);
+        }
+      </style>
+    
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,21 +42,14 @@
         </ul>
       </nav>
 
-    <header>
-        <nav>
-            <!-- Contenido de la barra de navegación -->
-        </nav>
-        <h1>Encabezado de Mi Sitio Web</h1>
-    </header>
 
-    <!DOCTYPE html>
-<html lang="es">
-<head>
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
-</head>
-<body>
+
 
 <form action="#" method="post">
     <label for="nombre">Nombre:</label>
@@ -74,8 +71,25 @@
     <button type="submit">Enviar</button>
 </form>
 
-</body>
-</html>
+<form action="#" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required><br>
+
+    <label for="email">Correo Electrónico:</label>
+    <input type="email" id="email" name="email" placeholder="Correo Electrónico" required><br>
+
+    <label for="tema">Tema de interés:</label>
+    <select id="tema" name="tema" required>
+        <option value="opcion1">Tema 1</option>
+        <option value="opcion2">Tema 2</option>
+        <option value="opcion3">Tema 3</option>
+    </select><br>
+
+    <label for="comentario">Comentario:</label>
+    <textarea id="comentario" name="comentario" placeholder="Escribe aquí tu comentario..." rows="4" cols="50" required></textarea><br>
+
+    <button type="submit">Enviar</button>
+</form>
 
     <main>
         <section>
