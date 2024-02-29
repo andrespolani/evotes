@@ -1,0 +1,5 @@
+
+};var routes = {
+    A10: { name: "Ruta A10", description: "Descripción de la ruta A10" },
+    B27: { name: "Ruta B27", description: "Descripción de la ruta B27" },
+    // Agrega más rutas aquí

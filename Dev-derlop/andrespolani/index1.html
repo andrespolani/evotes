@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interactivo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+       // nuevo
+zczcxcv
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #barra-tareas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(150, 9, 9, 0.1);
+            z-index: 2; 
+        }
+
+        #logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .redes-sociales a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .copyright {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .opcion-tarea {
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .opcion-tarea i {
+            margin-bottom: 5px;
+            color: #ff0000;
+        }
+
+        
+        #map-container {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 60px);
+            border: 1px solid #ccc;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+        }
+        #countdown {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 50px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        .ruta {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        #ruta-info {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            display: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #cerrar-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .negro { background-color: #000; }
+        .azul { background-color: #3498db; }
+        .verde { background-color: #2ecc71; }
+        .amarillo { background-color: #f1c40f; }
+        .morado { background-color: #9b59b6; }
+        .cafe { background-color: #8e44ad; }
+        .rojo { background-color: #e74c3c; }
+        .azul-claro { background-color: #3498db; }
+        .naranja { background-color: #e67e22; }
+        .beige { background-color: #d2b48c; }
+        .azul-celeste { background-color: #5dade2; }
+        .fucsia { background-color: #e91e63; }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+ 
+    <section>
+    
+    <div id="map-container">
+        
+        
+        <img src="../trasmilenio/img/Tra.svg.png" alt="Mapa Interactivo de TransMilenio">
+        <div id="routes-container">
+          
+            
+        </div>
+    </section>
+    <section>
+        
+
+    <div id="barra-tareas">
+            <img id="logo" src="../trasmilenio/img/icono.png" alt="Logo TransMilenio">
+            
+            <a href="https://www.transmilenio.gov.co/" class="opcion-tarea"><i class="fas fa-home"></i>Inicio</a>
+            <a href="https://www.transmilenio.gov.co/buscador_de_rutas" class="opcion-tarea"><i class="fas fa-search"></i>Buscar</a>
+            <a href="https://www.transmilenio.gov.co/plano_de_estaciones_y_portales_de_transmilenio" class="opcion-tarea"><i class="far fa-clock"></i>Horarios</a>
+        
+    </div>
+
+</section>
+<section>
+    <div id="map-container" >
+        <img src="../trasmilenio/img/TRA.jpg" alt="Mapa Interactivo de TransMilenio">
+        <div id="routes-container">
+          
+            
+        </div>
+    </section>
+<section><div id="map-container">
+    <img src="../trasmilenio/img/Tra.svg.png" alt="Mapa Interactivo de TransMilenio">
+    <div id="routes-container">
+        <!-- Aquí se mostrará la información de las rutas -->
+    </div>
+</section>
+</section>
+    <section><div id="map-container">
+        <img src="../trasmilenio/img/mapa.png" alt="Mapa Interactivo de TransMilenio">
+        <div id="routes-container">
+            <!-- Aquí se mostrará la información de las rutas -->
+        </div>
+</section>
+
+<div id="ruta-info">
+    <div id="ruta-title"></div>
+    <div id="ruta-description"></div>
+    <div id="countdown"></div>
+    <button onclick="cerrarInfo()">Cerrar</button>
+</div>
+<section>  
+<div id="map-container">
+        <!-- Agrega tus elementos de mapa aquí -->
+        <button class="ruta negro" data-ruta="ne">1</button>
+        <button class="ruta negro" data-ruta="negro">2</button>
+        <button class="ruta negro" data-ruta="negro">3</button>
+        <button class="ruta negro" data-ruta="negro">4</button>
+        <button class="ruta negro" data-ruta="negro">5</button>
+        <button class="ruta negro" data-ruta="negro">5</button>
+        <button class="ruta azul" data-ruta="azul">A 52</button>
+        <button class="ruta azul" data-ruta="azul">A 60</button>
+        <button class="ruta azul" data-ruta="azul">A 62</button>
+        <button class="ruta verde" data-ruta="verde">B 10</button>
+        <button class="ruta verde" data-ruta="verde">B 11</button>
+        <button class="ruta verde" data-ruta="verde">B 12</button>
+        <button class="ruta verde" data-ruta="verde">B 13</button>
+        <button class="ruta verde" data-ruta="verde">B 18</button>
+        <button class="ruta verde" data-ruta="verde">B 23</button>
+        <button class="ruta verde" data-ruta="verde">B 26</button>
+        <button class="ruta amarillo" data-ruta="amarillo"> C 15</button>
+        <button class="ruta amarillo" data-ruta="amarillo"> C 17</button>
+        <button class="ruta amarillo" data-ruta="amarillo"> C 19</button>
+        <button class="ruta amarillo" data-ruta="amarillo"> C 25</button>
+        <button class="ruta amarillo" data-ruta="amarillo"> C 30</button>
+        <button class="ruta amarillo" data-ruta="amarillo"> C 50</button>
+        <button class="ruta morado" data-ruta="morado">D 10</button>
+        <button class="ruta morado" data-ruta="morado">D 20</button>
+        <button class="ruta morado" data-ruta="morado">D 21</button>
+        <button class="ruta morado" data-ruta="morado">D 22</button>
+        <button class="ruta morado" data-ruta="morado">D 24</button>
+        <button class="ruta morado" data-ruta="morado">D 81</button>
+        <button class="ruta cafe" data-ruta="cafe">E 32</button>
+        <button class="ruta cafe" data-ruta="cafe">E 42</button>
+        <button class="ruta rojo" data-ruta="rojo">F 19</button>
+        <button class="ruta rojo" data-ruta="rojo">F 23</button>
+        <button class="ruta rojo" data-ruta="rojo">F 26</button>
+        <button class="ruta rojo" data-ruta="rojo">F 28</button>
+        <button class="ruta rojo" data-ruta="rojo">F 32</button>
+        <button class="ruta rojo" data-ruta="rojo">F 51</button>
+        <button class="ruta rojo" data-ruta="rojo">F 60</button>
+        <button class="ruta rojo" data-ruta="rojo">F 61</button>
+       
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 11 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 12 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 22 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 30 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 41 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 42 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 43 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 45 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 46 </button>
+        <button class="ruta azul-claro" data-ruta="azul-claro">G 47 </button>
+        <button class="ruta naranja" data-ruta="naranja">H 13</button>
+        <button class="ruta naranja" data-ruta="naranja">H 15</button>
+        <button class="ruta naranja" data-ruta="naranja">H 17</button>
+        <button class="ruta naranja" data-ruta="naranja">H 20</button>
+        <button class="ruta naranja" data-ruta="naranja">H 21</button>
+        <button class="ruta naranja" data-ruta="naranja">H 27</button>
+        <button class="ruta naranja" data-ruta="naranja">H 54</button>
+        <button class="ruta naranja" data-ruta="naranja">H 72</button>
+        <button class="ruta naranja" data-ruta="naranja">H 73</button>
+        <button class="ruta naranja" data-ruta="naranja">H 75</button>
+        <button class="ruta beige" data-ruta="beige"> J23</button>
+        <button class="ruta beige" data-ruta="beige">J24</button>
+        <button class="ruta beige" data-ruta="beige">J70</button>
+        <button class="ruta beige" data-ruta="beige">J73</button>
+        <button class="ruta beige" data-ruta="beige">J74</button>
+        
+        <button class="ruta fucsia" data-ruta="fucsia">K10</button>
+        <button class="ruta fucsia" data-ruta="fucsia">K16</button>
+        <button class="ruta fucsia" data-ruta="fucsia">K23</button>
+        <button class="ruta fucsia" data-ruta="fucsia">K43</button>
+        <button class="ruta fucsia" data-ruta="fucsia">K54</button>
+    </div>
+
+    </div>
+
+    </section>
+
+    
+    <section>  
+        <div id="countdown"></div>
+    <div id="map-container">
+
+        <h1>Ubicación Actual</h1>
+        
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d63141782.451334655!2d-2.970703!3d15!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sco!4v1700634834976!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div id="map"></div>
+
+    
+        <script>
+            function iniciarMap() {
+                // Crear mapa
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 4.6097100, lng: -74.0817500}, // Coordenadas de Bogotá
+                    zoom: 12
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=iniciarMap" async defer></script>
+    </div>
+
+</section>
+<div id="map-container">
+        <img src="../trasmilenio/img/mapa.png" alt="Mapa Interactivo de TransMilenio">
+        <div id="routes-container">
+            <!-- Aquí se mostrará la información de las rutas -->
+            
+        </div>
+
+    <div id="ruta-info">
+        <span id="cerrar-info" onclick="cerrarInfo()">X</span>
+        <h2 id="ruta-title"></h2>
+        <p id="ruta-description"></p>
+    </div>
+
+    <h1>Mapa de Google</h1>
+    <p>A continuación se muestra un mapa de Google:</p>
+    <div id="map"></div>
+    <h2>Rutas del TransMilenio</h2>
+    <p>Aquí se muestran las rutas del TransMilenio con puntos en movimiento:</p>
+    <div id="rutas"></div>
+
+    <script>
+        function iniciarMap() {
+            // Crear mapa
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 4.6097100, lng: -74.0817500}, // Coordenadas de Bogotá
+                zoom: 12
+            });
+
+            // Agregar marcadores de puntos en movimiento
+            var markers = [
+                {lat: 4.678337, lng: -74.062581}, // Punto 1
+                {lat: 4.642974, lng: -74.105797}, // Punto 2
+                {lat: 4.717778, lng: -74.066039}  // Punto 3
+            ];
+
+            markers.forEach(function(marker) {
+                new google.maps.Marker({
+                    position: marker,
+                    map: map
+                });
+            });
+
+            // Obtener la ubicación actual del usuario
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Agregar un marcador para la ubicación actual del usuario
+                    new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',  // Icono azul para la ubicación actual
+                        title: 'Tu ubicación'
+                    });
+
+                    // Centrar el mapa en la ubicación actual del usuario
+                    map.setCenter(userLocation);
+                }, function() {
+                    // Manejar errores de geolocalización
+                    console.error('Error: No se pudo obtener la ubicación actual del usuario.');
+                });
+            } else {
+                // El navegador no soporta la geolocalización
+                console.error('Error: El navegador no soporta la geolocalización.');
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=iniciarMap" async defer></script>
+
+    <script>
+        function irAInicio() {
+            // Aquí puedes implementar la lógica para la opción "Inicio"
+            alert("Ir a Inicio");
+        }
+
+        function buscarRuta() {
+            // Aquí puedes implementar la lógica para la opción "Buscar Ruta"
+            alert("Buscar Ruta");
+        }
+
+        function verHorarios() {
+            // Aquí puedes implementar la lógica para la opción "Ver Horarios"
+            alert("Ver Horarios");
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var botonesRuta = document.querySelectorAll('.ruta');
+
+            botonesRuta.forEach(function (boton) {
+                boton.addEventListener('click', function () {
+                    var ruta = boton.getAttribute('data-ruta');
+                    var infoRuta = obtenerInformacionDeRuta(ruta);
+                    mostrarInformacionDeRuta(infoRuta);
+                });
+            });
+        });
+        
+
+        function obtenerInformacionDeRuta(ruta) {
+            var informacion = {
+                titulo: 'La ruta está en su ubicación en 5 minutos aproximadamente ' ,
+                descripcion: 'registra capacidad media. ' 
+            };
+            return informacion;
+        }
+
+        function mostrarInformacionDeRuta(infoRuta) {
+            var rutaTitle = document.getElementById('ruta-title');
+            var rutaDescription = document.getElementById('ruta-description');
+            var rutaInfo = document.getElementById('ruta-info');
+
+            rutaTitle.textContent = infoRuta.titulo;
+            rutaDescription.textContent = infoRuta.descripcion;
+
+            // Muestra la información de la ruta
+            rutaInfo.style.display = 'block';
+
+            // Inicia el cronómetro con cuenta regresiva
+            iniciarCronometro();
+        }
+
+        // Función para iniciar el cronómetro con cuenta regresiva
+        function iniciarCronometro() {
+            // Fecha y hora objetivo para la cuenta regresiva (5 minutos)
+            var fechaObjetivo = new Date().getTime() + 300000;
+
+            // Actualizar el cronómetro cada segundo
+            var intervaloCronometro = setInterval(function() {
+                // Fecha y hora actual
+                var fechaActual = new Date().getTime();
+
+                // Calcular la diferencia entre la fecha objetivo y la actual
+                var tiempoRestante = fechaObjetivo - fechaActual;
+
+                // Calcular minutos y segundos restantes
+                var minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+                var segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+
+                // Mostrar el tiempo restante en el elemento con id "countdown"
+                document.getElementById('countdown').innerHTML = 'Tiempo restante: ' + minutos + 'm ' + segundos + 's ';
+
+                // Si el tiempo restante es menor o igual a cero, detener el cronómetro
+                if (tiempoRestante <= 0) {
+                    clearInterval(intervaloCronometro);
+                    document.getElementById('countdown').innerHTML = '¡Tiempo agotado!';
+                }
+            }, 1000); // Actualizar cada segundo
+        }
+
+        function cerrarInfo() {
+            var rutaInfo = document.getElementById('ruta-info');
+            rutaInfo.style.display = 'none';
+        }
+    </script>
+
+    <!-- Llamada de ejemplo para mostrar la información de la ruta -->
+    <script>
+        // Llamada de ejemplo
+        var infoRutaEjemplo = obtenerInformacionDeRuta('Ruta 1');
+        mostrarInformacionDeRuta(infoRutaEjemplo);
+
+</script>
+
+
+<footer>
+    <div class="redes-sociales">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <!-- Agrega más iconos y enlaces según sea necesario -->
+    </div>
+    <div class="copyright">
+        &copy; 2023 Tu Empresa | Todos los derechos reservados
+        &copy; Proyecto realizado por estudiantes de la universidad surcolombian
+    </div>
+</footer>
+        
+    
+
+</body>
+
+</html>
